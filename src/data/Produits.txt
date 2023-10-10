@@ -3,9 +3,9 @@ LIVRE-2;La Peste de Albert Camus;8.5;4
 VETEMENT-1;Pantalon bleu taille 44 homme;12.0;5
 VETEMENT-2;Pantalon jean femme 48;23.0;4
 VETEMENT-3;T-shirt rose femme 52;30.0;6
-LIVRE-3;Le P�re Goriot de Honor� de Balzac;11.0;5
-LIVRE-4;L'�tranger de Albert Camus;11.0;2
-LIVRE-5;Voyage au bout de la nuit de Louis-ferdinand C�line;11.0;0
+LIVRE-3;Le P re Goriot de Honor  de Balzac;11.0;5
+LIVRE-4;L' tranger de Albert Camus;11.0;2
+LIVRE-5;Voyage au bout de la nuit de Louis-ferdinand C line;11.0;0
 BD-1;Tintin au Tibet;11.5;2
 BD-2;Spirou et Fantasio;11.5;0
 BD-3;Corto Maltese;11.5;0
@@ -15,7 +15,7 @@ VETEMENT-4;Robe rouge femme 40;24.0;3
 VETEMENT-5;Chemise blanche homme L;18.0;6
 VETEMENT-6;Chaussures sport homme 42;45.0;4
 LIVRE-8;Les Justes de Albert Camus;12.5;5
-LIVRE-9;Po�sies de Arthur Rimbaud;8.0;3
+LIVRE-9;Poésies de Arthur Rimbaud;8.0;3
 LIVRE-10;Nana de Emile Zola;11.0;2
-BD-4;Ast�rix le Gaulois;12.0;3
+BD-4;Astérix le Gaulois;12.0;3
 BD-5;Lucky Luke;11.0;4

@@ -110,7 +110,7 @@ public class Site implements Initialisation {
                             String date = champs[1];
                             String client = champs[2];
                             HashMap<String, Integer> references = new HashMap<>();
-                            String[] produits = champs[3].split("\\|");//regex \\| = caractères d'échappement
+                            String[] produits = champs[3].split("\\|");//regex \\ = caractères d'échappement
                             for (String produit : produits) {
                                 String[] refQuantite = produit.split("=");//Split au signe =
                                 String refProduit = refQuantite[0];

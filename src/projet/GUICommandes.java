@@ -10,7 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class GUICommandes implements FormulaireInt {
+public class GUICommandes  {
 
     private GUISite formPP;
     private Site site;
@@ -150,7 +150,5 @@ public class GUICommandes implements FormulaireInt {
         listCommandes.setListData(getCommandesArray());
     }
 
-    @Override
-    public void submit(Formulaire form, String nom) {
-    }
+
 }

@@ -8,7 +8,7 @@ public class Commande
     private int     numero;
     private String  date;
     private String  client;
-    private HashMap<String, Integer> references;
+    private HashMap<String, Integer> references; //Hashmap Référence du produit + Quantité du produit ==> Facilité pour écriture/lecture dans fichiers txt
     private boolean livraison;
     private String raisonDelai;
 
@@ -86,6 +86,14 @@ public class Commande
 
         return tostring;
     }
+
+    /**
+     * Met à jour la quantité d'un produit dans la commande en fonction de sa référence.
+     * Si le produit avec la référence donnée n'existe pas dans la commande, une notification est affichée.
+     *
+     * @param produitRef La référence du produit dont la quantité doit être mise à jour.
+     * @param quantite La nouvelle quantité du produit.
+     */
     public void setQuantiteProduit(String produitRef, int quantite) {
         if (this.references.containsKey(produitRef)) {
             this.references.put(produitRef, quantite);
@@ -93,13 +101,8 @@ public class Commande
             System.out.println("Le produit avec la référence " + produitRef + " n'existe pas dans cette commande.");
         }
     }
-    public double getPrixProduit(HashMap<String, Double> prixProduits, String refProduit) {
-        if (prixProduits.containsKey(refProduit)) {
-            return prixProduits.get(refProduit);
-        } else {
-            return 0;
-        }
-    }
+
+
 
 
 }

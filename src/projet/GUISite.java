@@ -6,7 +6,10 @@ public class GUISite implements FormulaireInt
 {
     private Site site;
 
-
+    /**
+     * Constructeur de la fenêtre principale, prend Site initialisé par les fichiers en arg
+     * @param site
+     */
     public GUISite(Site site)
     {
         this.site = site;
@@ -25,6 +28,9 @@ public class GUISite implements FormulaireInt
         form.addLabel("Afficher la liste des commandes en attente");
         form.addButton("AFF_COMMANDES_NON_LIVREES","Commandes en attente");
         form.addLabel("");
+        form.addLabel("Calculer prix commandes livrées");
+        form.addButton("PRIX_COMM_LIVREES","Prix commandes livrées");
+        form.addLabel("");
         form.addText("NUM_COMMANDE","Numero de commande",true,"1");
         form.addButton("AFF_COMMANDE","Afficher");
         form.addLabel("");
@@ -38,6 +44,12 @@ public class GUISite implements FormulaireInt
         form.afficher();
     }
 
+    /**
+     * Envoi formulaire en fonction du bouton et appel des focntions correspondantes
+     *
+     * @param form      Le formulaire contenant les informations
+     * @param nomSubmit Le nom du bouton
+     */
 
     public void submit(Formulaire form,String nomSubmit)
     {
@@ -68,6 +80,11 @@ public class GUISite implements FormulaireInt
         if (nomSubmit.equals("AFF_GESTION_C"))
         {
             GUICommandes g = new GUICommandes(this, site);
+        }
+        if (nomSubmit.equals("PRIX_COMM_LIVREES"))
+        {
+            double prix = site.getTotalCommandesLivrees();
+            form.setValeurChamp("RESULTATS", String.valueOf(prix) + " euros.");
         }
     }
 

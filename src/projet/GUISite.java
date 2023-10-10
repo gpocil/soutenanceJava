@@ -50,7 +50,6 @@ public class GUISite implements FormulaireInt
      * @param form      Le formulaire contenant les informations
      * @param nomSubmit Le nom du bouton
      */
-
     public void submit(Formulaire form,String nomSubmit)
     {
         if (nomSubmit.equals("AFF_STOCK"))

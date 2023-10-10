@@ -5,7 +5,7 @@ import java.util.*;
 /** La classe Terminal permet de r?aliser ses premiers programmes Java en permettant d'afficher dans la console d'ex?cution des donn?es de type diff?rents, et en permettant de saisir au clavier des donn?es de type diff?rents.<BR>
     Elle permet aussi de lire et ?crire un fichier texte
     Cette classe contient que des m?thodes statiques. */
-public class Terminal{    
+public class Terminal{
 
     // Le buffer standard  de lecture = le clavier
     private static BufferedReader in =
@@ -17,7 +17,7 @@ public class Terminal{
         @exception TerminalException (de type RuntimeException) si erreur d'?criture<BR>
         Rappel : Une exception de type RuntimeException n'a pas l'obligation d'?tre captur?e.
 */
-    public static String[] lireFichierTexte(String nomFichier)
+    public static String[] lireFichierTexte(String nomFichier) throws IOException
     {
         try{
             File fichier = new File(nomFichier);

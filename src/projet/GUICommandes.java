@@ -23,6 +23,9 @@ public class GUICommandes implements FormulaireInt {
      * @param site   Référence au site initialisé qui contient tous les produits et commandes.
      */
     public GUICommandes(GUISite formPP, Site site) {
+        if(formPP == null || site == null) {
+            throw new IllegalArgumentException("Les arguments ne peuvent pas être null");
+        }
         this.formPP = formPP;
         this.site = site;
 
@@ -109,7 +112,10 @@ public class GUICommandes implements FormulaireInt {
      * Prend le site initialisé en arg pour permettre l'écriture du fichier après modif
      * @param site
      */
-    private void ouvrirEditeurCommande(Site site){
+    private void ouvrirEditeurCommande(Site site) {
+        if (site == null) {
+            throw new IllegalArgumentException("Le site ne peut pas être null");
+        }
     Commande selectedCommande = listCommandes.getSelectedValue();
     if (selectedCommande != null) {
         new GUIEditeurCommande(selectedCommande, site);

@@ -15,12 +15,16 @@ public class GUIEditeurCommande {
     private Site site;
 
     public GUIEditeurCommande(Commande commande, Site site) {
+        if(commande == null || site == null) {
+            throw new IllegalArgumentException("Les arguments ne peuvent pas être null");
+        }
+
         this.commande = commande;
-        this.site=site;
+        this.site = site;
         setupUI();
     }
     /**
-     * Initialise et configure l'interface graphique pour la modification d'une commande.
+     * Initialise et configure l'UI pour la modification d'une commande
      */
     private void setupUI() {
         JFrame frame = new JFrame("Modification de la Commande");
@@ -32,7 +36,7 @@ public class GUIEditeurCommande {
         columnNames.add("Produit");
         columnNames.add("Quantité");
 
-        Vector<Vector<Object>> data = new Vector<>();//Vector = ArrayList synchronisé, compatible avec DefaultTableModel
+        Vector<Vector<Object>> data = new Vector<>();//Vector = ArrayList synchronisé (safe pour multithread), compatible avec DefaultTableModel
         HashMap<String, Integer> produits = commande.getReferences();
         for (String key : produits.keySet()) {
             Vector<Object> row = new Vector<>();
@@ -72,8 +76,13 @@ public class GUIEditeurCommande {
     private void updateCommande(Commande commande, JTable table) throws IOException {
         for (int row = 0; row < table.getRowCount(); row++) {
             String produitRef = table.getValueAt(row, 0).toString();
-            int updatedQuantity = Integer.parseInt(table.getValueAt(row, 1).toString());
-            commande.setQuantiteProduit(produitRef, updatedQuantity);
+            try {
+                int updatedQuantity = Integer.parseInt(table.getValueAt(row, 1).toString());
+                commande.setQuantiteProduit(produitRef, updatedQuantity);
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "La quantité pour le produit " + produitRef + " n'est pas un nombre valide.");
+                return;
+            }
             Site.ecriture(site.getCommandes(), site.getStock());
         }
     }

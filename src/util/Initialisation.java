@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface Initialisation {
 
-    void initialisation(String fileName);
+    void initialisation(String fileName) throws IOException;
 
     static void ecriture(List<Commande> c, List<Produit> p) throws IOException {
 

@@ -2,12 +2,12 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/src/data/Produits.txt" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/src/ihm/ControlesCanvasIHM.java" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/src/ihm/Formulaire.java" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/src/ihm/FormulaireInt.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/ihm/ControlesCanvasIHM.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/ihm/Formulaire.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/ihm/FormulaireInt.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/tore/Tore.java" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/src/util/Terminal.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/tore/Tore.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/util/Terminal.java" charset="UTF-8" />
   </component>
 </project>

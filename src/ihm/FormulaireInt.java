@@ -1,15 +1,15 @@
 package ihm;
 
 /** Interface d'utilisation d'un formulaire.<br>
-    L'applicatif passer en paramètre du formulaire doit 
-    implémenter cette interface. */
+    L'applicatif passer en paramÃ¨tre du formulaire doit 
+    implÃ©menter cette interface. */
 public interface FormulaireInt
 {
-    /** Cette méthode est appelée lors de l'utilsation d'un bouton.<br>
-        L'appel à form.getValeurChamp permet de récupérer les valeurs des champs.<br>
-        L'appel à form.setValeurChamp permet de changer les valeurs des champs.<br>
+    /** Cette mÃ©thode est appelÃ©e lors de l'utilsation d'un bouton.<br>
+        L'appel Ã  form.getValeurChamp permet de rÃ©cupÃ©rer les valeurs des champs.<br>
+        L'appel Ã  form.setValeurChamp permet de changer les valeurs des champs.<br>
         @param form Le formulaire dans lequel se trouve le bouton
-        @param nom Le nom du bouton qui a été utilisé.
+        @param nom Le nom du bouton qui a Ã©tÃ© utilisÃ©.
      */
     public void     submit(Formulaire form,String nom);
 }

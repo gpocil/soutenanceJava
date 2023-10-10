@@ -7,8 +7,6 @@ import java.util.*;
 
 import util.*;
 
-import javax.swing.*;
-
 public class Site implements Initialisation {
     private ArrayList<Produit> stock;
     private ArrayList<Commande> commandes;
@@ -19,11 +17,18 @@ public class Site implements Initialisation {
      */
     public Site() {
         stock = new ArrayList<Produit>();
-        initialisation("src/data/Produits.txt");
+        try {
+            initialisation("src/data/Produits.txt");
+        } catch (IOException e) {
+            System.err.println("Erreur lors de l'initialisation des produits: " + e.getMessage());
+        }
+
         commandes = new ArrayList<Commande>();
-        initialisation("src/data/Commandes.txt");
-
-
+        try {
+            initialisation("src/data/Commandes.txt");
+        } catch (IOException e) {
+            System.err.println("Erreur lors de l'initialisation des commandes: " + e.getMessage());
+        }
     }
 
     /**
@@ -66,7 +71,7 @@ public class Site implements Initialisation {
     }
 
     /**
-     * Renvoie le toString d'une commande si correspondance avec int en paramètre
+     * Renvoie le toString d'une commande spécifique si correspondance avec int en paramètre
      *
      * @param numero Le numéro de la commande
      * @return toString de la commande si trouvée; sinon  "Commande non trouvée".
@@ -88,42 +93,50 @@ public class Site implements Initialisation {
      *
      * @param nomFichier Le nom du fichier à lire (soit "Produits.txt" pour les produits, soit "Commandes.txt" pour les commandes).
      */
-    public void initialisation(String nomFichier) {
-        String[] lignes = Terminal.lireFichierTexte(nomFichier);
-        for (String ligne : lignes) {
-            String[] champs = ligne.split("[;]");
-            if (nomFichier.equals("src/data/Produits.txt")) {
-                String reference = champs[0];
-                String nom = champs[1];
-                double prix = Double.parseDouble(champs[2]);
-                int quantite = Integer.parseInt(champs[3]);
-                Produit p = new Produit(reference, nom, prix, quantite);
-                stock.add(p);
-            } else if (nomFichier.equals("src/data/Commandes.txt")) {
-                String numero = champs[0];
-                String date = champs[1];
-                String client = champs[2];
-                HashMap<String, Integer> references = new HashMap<>();
-                String[] produits = champs[3].split("\\|");//regex \\| = caractères d'échappement
-                for (String produit : produits) {
-                    String[] refQuantite = produit.split("=");//Split au signe =
-                    String refProduit = refQuantite[0];
-                    int quantite = Integer.parseInt(refQuantite[1]);
-                    references.put(refProduit, quantite);
-                }
-                boolean livraison = Boolean.parseBoolean(champs[4]);
-                if (!livraison) {//Distinction commande livrée ou non
-                    String raisonDelai = champs[5];
-                    Commande c = new Commande(Integer.parseInt(numero), date, client, references, livraison, raisonDelai);
-                    commandes.add(c);
-                } else {
-                    Commande c = new Commande(Integer.parseInt(numero), date, client, references, livraison, "");
-                    commandes.add(c);
-                }
-
+        public void initialisation(String nomFichier) throws IOException {
+            try {
+                String[] lignes = Terminal.lireFichierTexte(nomFichier);
+                for (String ligne : lignes) {
+                        String[] champs = ligne.split("[;]");
+                        if (nomFichier.equals("src/data/Produits.txt")) {
+                            String reference = champs[0];
+                            String nom = champs[1];
+                            double prix = Double.parseDouble(champs[2]);
+                            int quantite = Integer.parseInt(champs[3]);
+                            Produit p = new Produit(reference, nom, prix, quantite);
+                            stock.add(p);
+                        } else if (nomFichier.equals("src/data/Commandes.txt")) {
+                            String numero = champs[0];
+                            String date = champs[1];
+                            String client = champs[2];
+                            HashMap<String, Integer> references = new HashMap<>();
+                            String[] produits = champs[3].split("\\|");//regex \\| = caractères d'échappement
+                            for (String produit : produits) {
+                                String[] refQuantite = produit.split("=");//Split au signe =
+                                String refProduit = refQuantite[0];
+                                int quantite = Integer.parseInt(refQuantite[1]);
+                                references.put(refProduit, quantite);
+                            }
+                            boolean livraison = Boolean.parseBoolean(champs[4]);
+                            if (!livraison) {//Distinction commande livrée ou non
+                                String raisonDelai = champs[5];
+                                Commande c = new Commande(Integer.parseInt(numero), date, client, references, livraison, raisonDelai);
+                                commandes.add(c);
+                            } else {
+                                Commande c = new Commande(Integer.parseInt(numero), date, client, references, livraison, "");
+                                commandes.add(c);
+                            }
+                        }
+                    }
+            } catch (IOException e) {
+                System.err.println("Erreur lors de la lecture du fichier " + nomFichier + ": " + e.getMessage());
+                throw new RuntimeException(e);
+            } catch (NumberFormatException e) {
+                System.err.println("Erreur lors de la conversion des données du fichier " + nomFichier + ": " + e.getMessage());
+                throw new RuntimeException(e);
             }
         }
-    }
+
     /**
      * Sauvegarde les informations des produits et des commandes dans des fichiers séparés
 
@@ -174,14 +187,6 @@ public class Site implements Initialisation {
 
     public ArrayList<Produit> getStock() {
         return stock;
-    }
-
-    public void setStock(ArrayList<Produit> stock) {
-        this.stock = stock;
-    }
-
-    public void setCommandes(ArrayList<Commande> commandes) {
-        this.commandes = commandes;
     }
 
     public ArrayList<Commande> getCommandes() {

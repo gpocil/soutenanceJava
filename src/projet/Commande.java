@@ -14,6 +14,10 @@ public class Commande
 
 
     public Commande(int numero, String date, String client, HashMap<String, Integer> references, boolean livraison, String raisonDelai) {
+        if (date == null || client == null || references == null || raisonDelai == null) {
+            throw new IllegalArgumentException("Aucun des paramètres ne peut être null");
+        }
+
         this.numero = numero;
         this.date = date;
         this.client = client;
@@ -22,40 +26,24 @@ public class Commande
         this.raisonDelai = raisonDelai;
     }
 
-    public boolean checkEtatCommande(){
-        return this.livraison;
-    }
+
 
     public int getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }
+
 
     public String getDate() {
         return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
 
     public String getClient() {
         return client;
     }
 
-    public void setClient(String client) {
-        this.client = client;
-    }
-
     public HashMap<String, Integer>  getReferences() {
         return references;
-    }
-
-    public void setReferences(HashMap<String, Integer> references) {
-        this.references = references;
     }
 
     public boolean isLivre() {
@@ -95,6 +83,12 @@ public class Commande
      * @param quantite La nouvelle quantité du produit.
      */
     public void setQuantiteProduit(String produitRef, int quantite) {
+        if (produitRef == null) {
+            throw new IllegalArgumentException("La référence du produit ne peut pas être null");
+        }
+        if (quantite < 0) {
+            throw new IllegalArgumentException("La quantité ne peut pas être négative");
+        }
         if (this.references.containsKey(produitRef)) {
             this.references.put(produitRef, quantite);
         } else {
